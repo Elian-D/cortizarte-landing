@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cortizarte — Detalles hechos a mano en Bonao</title>
+<meta name="description" content="Regalos personalizados, decoración de eventos, material escolar y arte por encargo en Bonao, República Dominicana. Desde 1 pieza."/>
+<meta name="theme-color" content="#141B3D"/>
+<link rel="icon" type="image/svg+xml" href="Isotipo.svg"/>
+
+<!-- Vista previa al compartir el link (WhatsApp, Facebook, Instagram, X) -->
+<!-- Al tener dominio: cambia og:url y og:image a la dirección completa, p. ej. https://tudominio.com/og-image.jpg -->
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="es_DO"/>
+<meta property="og:site_name" content="Cortizarte"/>
+<meta property="og:title" content="Cortizarte — Detalles hechos a mano en Bonao"/>
+<meta property="og:description" content="Regalos personalizados, decoración de eventos, material escolar y arte por encargo. Desde 1 pieza · Hacemos envíos."/>
+<meta property="og:image" content="og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Logo de Cortizarte con cuadros de girasoles, decoración de Daddy Shower, un cuadro 3D y llaveros con foto"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<script>document.documentElement.classList.add('js');</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="image" href="Imagotipo-solo.svg"/>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+  * { font-style: normal !important; }
+  html, body { overflow-x: hidden; }
+
+  .sticker-diecut {
+    filter: drop-shadow(0 8px 16px rgba(20, 27, 61, 0.16));
+    border: 4px solid #fff;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), filter .25s ease;
+  }
+  @media (hover: hover) {
+    .sticker-diecut:hover {
+      transform: scale(1.06) rotate(0deg) translateY(-4px);
+      filter: drop-shadow(0 14px 24px rgba(20, 27, 61, 0.24));
+      z-index: 30;
+    }
+  }
+
+  .masking-tape {
+    background: rgba(244, 237, 216, .88);
+    box-shadow: 0 1px 3px rgba(0,0,0,.12);
+  }
+
+  .brush-stroke-multi {
+    background: linear-gradient(90deg, #E6197F 0%, #F7931E 25%, #FFC21A 50%, #14B8B0 75%, #7B3FB8 100%);
+  }
+
+  /* Tendedero */
+  .clothesline { cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+  .clothesline.is-dragging { cursor: grabbing; }
+  .clothesline img { -webkit-user-drag: none; pointer-events: none; }
+  .clothesline-track { will-change: transform; }
+  .clothesline-item {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M0 6 Q50 24 100 6' fill='none' stroke='%238D6E63' stroke-width='2.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 30px;
+    background-position: 0 0;
+  }
+  .polaroid-swing { transform-origin: 50% 0; transition: transform .3s ease; }
+  @media (hover: hover) {
+    .clothesline:not(.is-dragging) .clothesline-item:hover .polaroid-swing { transform: rotate(0deg) scale(1.04); }
+  }
+
+  /* Entradas por scroll (reversibles) */
+  .js [data-reveal] {
+    transition:
+      opacity .7s ease var(--d, 0ms),
+      translate .85s cubic-bezier(.2,.8,.2,1) var(--d, 0ms),
+      scale .85s cubic-bezier(.34,1.56,.64,1) var(--d, 0ms),
+      transform .25s cubic-bezier(.34,1.56,.64,1) 0ms,
+      filter .25s ease 0ms;
+  }
+  .js [data-reveal]:not(.is-in) { opacity: 0; }
+  .js [data-reveal="up"]:not(.is-in) { translate: 0 40px; }
+  .js [data-reveal="left"]:not(.is-in) { translate: -60px 0; }
+  .js [data-reveal="right"]:not(.is-in) { translate: 60px 0; }
+  .js [data-reveal="pop"]:not(.is-in) { translate: 0 30px; scale: .6; }
+  .js [data-reveal="drop"]:not(.is-in) { translate: 0 -70px; scale: 1.4; }
+  .js [data-reveal="slide"]:not(.is-in) { translate: -90px 0; }
+
+  /* La gran C se pinta */
+  .hero-c-path { transition: stroke-dashoffset 1.9s cubic-bezier(.65,0,.35,1); }
+  .hero-c-splash { transform-box: fill-box; transform-origin: center; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .3s ease; }
+  .js .hero-c:not(.is-drawn) .hero-c-splash { transform: scale(0); opacity: 0; }
+  .js .hero-c.is-drawn .hero-c-splash { transition-delay: var(--d, 1.4s); }
+
+  /* Vista ampliada */
+  [data-zoom] { cursor: zoom-in; }
+  .clothesline.is-dragging [data-zoom] { cursor: grabbing; }
+  .lightbox { position: fixed; inset: 0; z-index: 100; display: none; }
+  .lightbox.is-open { display: block; }
+  .lightbox-backdrop { position: absolute; inset: 0; background: rgba(20,27,61,.82); backdrop-filter: blur(6px); opacity: 0; transition: opacity .4s ease; }
+  .lightbox.is-visible .lightbox-backdrop { opacity: 1; }
+  .lightbox-frame {
+    position: fixed; overflow: hidden; background: #fff; border: 6px solid #fff;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    transition: top .5s cubic-bezier(.2,.85,.25,1), left .5s cubic-bezier(.2,.85,.25,1), width .5s cubic-bezier(.2,.85,.25,1), height .5s cubic-bezier(.2,.85,.25,1), border-radius .5s ease, transform .5s cubic-bezier(.2,.85,.25,1);
+  }
+  .lightbox-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lightbox-caption, .lightbox-close { opacity: 0; transition: opacity .3s ease, translate .3s ease; }
+  .lightbox.is-visible.is-settled .lightbox-caption, .lightbox.is-visible.is-settled .lightbox-close { opacity: 1; }
+  .lightbox-caption { position: fixed; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; color: #fff; padding: 0 16px; }
+  .lightbox-ask {
+    display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #141B3D; text-decoration: none;
+    font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 15px;
+    padding: 10px 20px 10px 14px; border-radius: 9999px; box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    transition: transform .2s ease, background-color .2s ease, color .2s ease;
+  }
+  .lightbox-ask:hover { transform: translateY(-2px); background: #E6197F; color: #fff; }
+  .lightbox-ask:focus-visible { outline: 3px solid #FFC21A; outline-offset: 2px; }
+  .lightbox-ask[hidden] { display: none; }
+  .lightbox-close {
+    position: fixed; top: 16px; right: 16px; width: 48px; height: 48px; border-radius: 9999px;
+    background: #fff; color: #141B3D; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  .lightbox-close:hover { background: #E6197F; color: #fff; }
+  .lightbox-close:focus-visible { outline: 3px solid #FFC21A; outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sticker-diecut, .polaroid-swing { transition: none; }
+    .js [data-reveal] { transition: none; opacity: 1 !important; translate: none !important; scale: none !important; }
+    .hero-c-path, .hero-c-splash, .lightbox-frame, .lightbox-backdrop { transition: none !important; }
+  }
+</style>
+</head>
+<body class="bg-papel text-tinta font-body antialiased selection:bg-magenta selection:text-white">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-papel/95 backdrop-blur-md border-b-2 border-tinta/10">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+    <a href="#" class="shrink-0" aria-label="Cortizarte, inicio">
+      <img src="Imagotipo-solo.svg" alt="CortizArte" class="h-9 sm:h-12 w-auto"/>
+    </a>
+    <div class="flex items-center gap-6 sm:gap-8">
+      <nav class="hidden md:flex items-center gap-7">
+        <a class="font-headline font-bold text-base text-tinta hover:text-magenta transition-colors" href="#trabajos">Trabajos</a>
+        <a class="font-headline font-bold text-base text-tinta hover:text-magenta transition-colors" href="#como-pedir">Cómo pedir</a>
+        <a class="font-headline font-bold text-base text-tinta hover:text-magenta transition-colors" href="#orden">Contacto</a>
+      </nav>
+      <a class="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center hover:bg-magenta/10 transition-colors" href="https://instagram.com/cortizarte" rel="noopener noreferrer" target="_blank" aria-label="Instagram @cortizarte"><svg class="w-6 h-6" viewBox="0 0 100 100" aria-hidden="true"><g fill="#dd2a7b"><path d="M75.352 18.949c-7.6.233-7.598 11.167 0 11.398 7.6-.233 7.598-11.167 0-11.398M50 25.547c-13.47 0-24.389 10.948-24.389 24.453 1.285 32.437 47.497 32.428 48.777 0C74.389 36.495 63.469 25.547 50 25.547m0 40.326c-8.743 0-15.831-7.107-15.831-15.873.834-21.055 30.832-21.05 31.663 0-.001 8.767-7.089 15.873-15.832 15.873"/><path d="M97.208 30.418C96.856 13.751 86.252 3.141 69.581 2.792c-4.003-.386-35.157-.393-39.163 0-16.667.352-27.277 10.956-27.626 27.627-.386 3.997-.394 35.161 0 39.163.311 16.613 11.011 27.316 27.626 27.626 4.003.39 35.157.39 39.163 0 5.055-.231 8.508-1.034 11.529-2.208 10.587-4.229 15.76-13.636 16.098-25.419.386-4.003.393-35.157 0-39.163M69.191 88.659c-3.939.376-34.441.382-38.383 0-4.63-.211-7.145-.985-8.819-1.635-14.449-6.702-9.969-20.255-10.65-38.858.015-4.321-.009-13.036.001-17.357.577-12.882 6.644-18.846 19.468-19.468 3.944-.376 34.438-.382 38.383 0 12.886.577 18.844 6.644 19.468 19.467.255 3.079.44 19.887 0 28.393.475 15.976-.253 28.521-19.468 29.458"/></g></svg></a>
+      <a class="bg-tinta hover:bg-magenta text-white font-headline font-bold text-sm pl-3 pr-4 sm:pl-4 sm:pr-6 py-2.5 rounded-full transition-colors flex items-center gap-2 shadow-sm" href="https://wa.me/18294999794?text=Hola%20Rosa%20%C3%81ngela!%20Quiero%20cotizar%20un%20dise%C3%B1o%20en%20Cortizarte" rel="noopener noreferrer" target="_blank">
+        <svg class="w-5 h-5 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#67c15e" fill-rule="evenodd" d="M23.993033 0C10.762252 0 0 10.765287 0 23.999801c0 5.24865 1.692661 10.116224 4.570026 14.067146l-2.990421 8.916851 9.224844-2.948259C14.598605 46.546975 19.126434 48 24.006967 48 37.237748 48 48 37.234315 48 24.000199 48 10.765685 37.237748.000398 24.006967.000398h-.013934zM17.29285 12.190836c-.465362-1.114556-.818066-1.156765-1.523076-1.185435-.240046-.013937-.50756-.027874-.804134-.027874-.91719 0-1.876178.267987-2.454597.860506-.70501.719544-2.4542 2.398347-2.4542 5.841169 0 3.442821 2.510728 6.772554 2.849101 7.238446.352704.465095 4.894864 7.632662 11.947353 10.553844 5.515082 2.285657 7.151613 2.073815 8.406777 1.805828 1.833584-.395012 4.132928-1.750081 4.711347-3.386277.578419-1.636993.578419-3.033872.408834-3.330131-.169187-.29626-.634947-.465096-1.339957-.818297-.70501-.352804-4.132928-2.045942-4.781808-2.271721-.634947-.239715-1.241231-.154899-1.720527.522436-.677144.945323-1.339957 1.90498-1.876178 2.483164-.423166.451557-1.114641.508101-1.692662.267987-.775869-.324133-2.947825-1.086683-5.628138-3.471093-2.073629-1.848038-3.484047-4.147632-3.892881-4.838904-.409233-.705209-.042197-1.114955.281844-1.495632.352705-.43762.691078-.747816 1.043782-1.157164.352704-.40895.550154-.620791.775869-1.10062.240046-.465493.070461-.945322-.098725-1.298126-.169187-.352803-1.579605-3.795625-2.158024-5.192106"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO: LA GRAN C -->
+<section class="relative pt-8 pb-16 xl:pt-12 xl:pb-24 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true">
+    <div class="absolute top-16 left-12 w-4 h-4 rounded-full bg-turquesa"></div>
+    <div class="absolute top-20 left-16 w-2 h-2 rounded-full bg-amarillo"></div>
+    <div class="absolute top-8 right-24 w-5 h-5 rounded-full bg-magenta"></div>
+    <div class="absolute top-16 right-36 w-3 h-3 rounded-full bg-naranja"></div>
+    <div class="absolute bottom-16 left-1/4 w-3 h-3 rounded-full bg-morado"></div>
+    <div class="absolute bottom-24 right-1/4 w-4 h-4 rounded-full bg-turquesa"></div>
+  </div>
+
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
+    <div class="relative flex flex-col xl:block xl:min-h-[620px]">
+
+      <div class="absolute inset-x-0 top-0 h-[460px] xl:h-auto xl:inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+        <svg class="hero-c w-[150%] max-w-none xl:w-full xl:max-w-[1100px] h-auto overflow-visible" viewBox="0 0 1000 600">
+          <defs>
+            <linearGradient gradientUnits="userSpaceOnUse" id="hero_c_grad" x1="150" x2="850" y1="80" y2="520">
+              <stop offset="0%" stop-color="#E6197F"/>
+              <stop offset="22%" stop-color="#F7931E"/>
+              <stop offset="48%" stop-color="#FFC21A"/>
+              <stop offset="72%" stop-color="#14B8B0"/>
+              <stop offset="100%" stop-color="#7B3FB8"/>
+            </linearGradient>
+            <filter id="brush_texture">
+              <feTurbulence baseFrequency="0.04" numOctaves="3" result="noise" type="fractalNoise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+          </defs>
+          <path class="hero-c-path" d="M 760 120 C 600 40, 360 40, 240 160 C 110 290, 120 420, 250 510 C 400 610, 680 570, 780 470" fill="none" filter="url(#brush_texture)" opacity="0.95" stroke="url(#hero_c_grad)" stroke-linecap="round" stroke-linejoin="round" stroke-width="72"/>
+          <circle class="hero-c-splash" style="--d:.15s" cx="810" cy="110" fill="#E6197F" r="14"/>
+          <circle class="hero-c-splash" style="--d:.25s" cx="835" cy="135" fill="#E6197F" r="7"/>
+          <circle class="hero-c-splash" style="--d:.55s" cx="210" cy="120" fill="#F7931E" r="11"/>
+          <circle class="hero-c-splash" style="--d:.85s" cx="110" cy="330" fill="#FFC21A" r="13"/>
+          <circle class="hero-c-splash" style="--d:1.25s" cx="180" cy="530" fill="#14B8B0" r="15"/>
+          <circle class="hero-c-splash" style="--d:1.75s" cx="830" cy="460" fill="#7B3FB8" r="16"/>
+          <circle class="hero-c-splash" style="--d:1.85s" cx="860" cy="485" fill="#7B3FB8" r="9"/>
+        </svg>
+      </div>
+
+      <!-- Titular -->
+      <div class="relative z-30 order-1 max-w-2xl mx-auto text-center py-12 sm:py-16 px-4 bg-[radial-gradient(closest-side,rgba(255,251,245,.96)_65%,rgba(255,251,245,0))] xl:absolute xl:inset-x-0 xl:top-1/2 xl:-translate-y-1/2">
+        <h1 class="font-headline font-extrabold text-[2.6rem] leading-[1.05] sm:text-6xl xl:text-[68px] tracking-tight text-tinta mb-5 sm:mb-6">
+          Detalles hechos a mano, pensados para ti.
+        </h1>
+        <p class="font-body text-lg md:text-xl text-tinta/80 max-w-xl mx-auto mb-8 sm:mb-9 leading-relaxed">
+          Regalos, decoración de eventos, material escolar y arte original. Desde 1 pieza.
+        </p>
+        <a class="bg-magenta hover:bg-[#c9126d] text-white font-headline font-bold text-lg px-8 sm:px-9 py-4 rounded-full shadow-lg shadow-magenta/25 hover:scale-105 active:scale-95 transition-transform inline-flex items-center gap-3" href="https://wa.me/18294999794?text=Hola%20Rosa%20%C3%81ngela!%20Tengo%20una%20idea%20para%20un%20dise%C3%B1o" rel="noopener noreferrer" target="_blank">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          Cuéntame tu idea
+        </a>
+      </div>
+
+      <!-- Stickers: grilla en móvil, flotando alrededor de la C en escritorio -->
+      <div class="relative z-20 order-2 grid grid-cols-3 md:grid-cols-6 gap-3 sm:gap-5 mt-2 max-w-5xl mx-auto w-full xl:contents">
+        <figure class="-rotate-6 xl:absolute xl:top-0 xl:left-12">
+          <div class="sticker-diecut rounded-2xl bg-white p-1.5 xl:p-2 xl:w-48">
+            <img decoding="async" alt="Cuadro del 21 de septiembre con girasoles modelados" class="w-full h-24 sm:h-32 object-cover rounded-xl" src="img/ig-08.webp"/>
+            <figcaption class="font-headline font-bold text-[11px] xl:text-xs text-tinta text-center pt-1.5">Girasoles en relieve</figcaption>
+          </div>
+        </figure>
+        <figure class="rotate-6 xl:absolute xl:-top-2 xl:right-16">
+          <div class="sticker-diecut rounded-2xl bg-white p-1.5 xl:p-2 xl:w-44">
+            <img decoding="async" alt="Decoración de Daddy Shower con elefante y globos azules" class="w-full h-24 sm:h-32 object-cover object-top rounded-xl" src="img/ig-12.webp"/>
+            <figcaption class="font-headline font-bold text-[11px] xl:text-xs text-tinta text-center pt-1.5">Daddy shower</figcaption>
+          </div>
+        </figure>
+        <figure class="rotate-3 xl:absolute xl:top-64 xl:left-4">
+          <div class="sticker-diecut rounded-2xl bg-white p-1.5 xl:p-2 xl:w-40">
+            <img decoding="async" alt="Llaveros acrílicos con foto" class="w-full h-24 sm:h-32 object-cover rounded-xl" src="img/ig-01.webp"/>
+            <figcaption class="font-headline font-bold text-[11px] xl:text-xs text-tinta text-center pt-1.5">Llaveros con foto</figcaption>
+          </div>
+        </figure>
+        <figure class="-rotate-6 xl:absolute xl:top-60 xl:right-8">
+          <div class="sticker-diecut rounded-2xl bg-white p-1.5 xl:p-2 xl:w-40">
+            <img decoding="async" alt="Separadores con versículos bíblicos" class="w-full h-24 sm:h-32 object-cover rounded-xl" src="img/ig-04.webp"/>
+            <figcaption class="font-headline font-bold text-[11px] xl:text-xs text-tinta text-center pt-1.5">Separadores</figcaption>
+          </div>
+        </figure>
+        <figure class="-rotate-3 xl:absolute xl:bottom-0 xl:left-36">
+          <div class="sticker-diecut rounded-2xl bg-white p-1.5 xl:p-2 xl:w-44">
+            <img decoding="async" alt="Cuadro 3D en capas de personaje de anime" class="w-full h-24 sm:h-32 object-cover rounded-xl" src="img/ig-03.webp"/>
+            <figcaption class="font-headline font-bold text-[11px] xl:text-xs text-tinta text-center pt-1.5">Cuadro 3D</figcaption>
+          </div>
+        </figure>
+        <figure class="rotate-3 xl:absolute xl:-bottom-2 xl:right-32">
+          <div class="sticker-diecut rounded-2xl bg-white p-1.5 xl:p-2 xl:w-44">
+            <img decoding="async" alt="Corona de hojas de otoño con tutú rosa" class="w-full h-24 sm:h-32 object-cover rounded-xl" src="img/ig-11.webp"/>
+            <figcaption class="font-headline font-bold text-[11px] xl:text-xs text-tinta text-center pt-1.5">Corona de otoño</figcaption>
+          </div>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ CREAMOS: CAJONES DEL TALLER -->
+<section>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 pt-6 pb-8">
+    <h2 class="font-headline font-bold text-3xl md:text-4xl text-tinta">Qué sale del taller</h2>
+  </div>
+
+  <div class="w-full bg-magenta py-10">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <div class="lg:w-1/2">
+        <span class="text-xs uppercase tracking-widest text-white/80 font-bold block mb-1">Línea 01</span>
+        <h3 class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tight leading-none mb-3">Regalos</h3>
+        <p class="font-body text-white/95 text-lg max-w-md leading-snug">Llaveros con foto, cuadros, separadores y detalles para fechas especiales como el 21 de septiembre.</p>
+      </div>
+      <div class="lg:w-1/2 grid grid-cols-3 gap-3 sm:gap-6 lg:flex lg:justify-end lg:items-center">
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 -rotate-6 lg:-mt-10">
+          <img loading="lazy" decoding="async" alt="Llaveros acrílicos con foto" class="w-full h-24 object-cover rounded-lg" src="img/ig-01.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Llaveros con foto</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 rotate-3 lg:-mt-6">
+          <img loading="lazy" decoding="async" alt="Cuadros del 21 de septiembre con girasoles" class="w-full h-24 object-cover rounded-lg" src="img/ig-07.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Cuadro 21 de sept.</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 -rotate-3 lg:-mt-12">
+          <img loading="lazy" decoding="async" alt="Ramo de girasol con papel de La noche estrellada" class="w-full h-24 object-cover rounded-lg" src="img/ig-09.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Ramo de girasol</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full bg-naranja py-10">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <div class="lg:w-1/2">
+        <span class="text-xs uppercase tracking-widest text-white/80 font-bold block mb-1">Línea 02</span>
+        <h3 class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tight leading-none mb-3">Eventos</h3>
+        <p class="font-body text-white/95 text-lg max-w-md leading-snug">Baby y daddy shower, cumpleaños, letreros con nombre, coronas y disfraces temáticos.</p>
+      </div>
+      <div class="lg:w-1/2 grid grid-cols-3 gap-3 sm:gap-6 lg:flex lg:justify-end lg:items-center">
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 rotate-6 lg:-mt-10">
+          <img loading="lazy" decoding="async" alt="Decoración de Daddy Shower Hassel" class="w-full h-24 object-cover object-top rounded-lg" src="img/ig-12.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Daddy shower</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 -rotate-3 lg:-mt-8">
+          <img loading="lazy" decoding="async" alt="Disfraz de otoño con tutú y corona de hojas" class="w-full h-24 object-cover rounded-lg" src="img/ig-06.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Disfraz temático</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 rotate-3 lg:-mt-12">
+          <img loading="lazy" decoding="async" alt="Corona de hojas de otoño" class="w-full h-24 object-cover rounded-lg" src="img/ig-11.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Corona festiva</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full bg-turquesa py-10">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <div class="lg:w-1/2">
+        <span class="text-xs uppercase tracking-widest text-white/80 font-bold block mb-1">Línea 03</span>
+        <h3 class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tight leading-none mb-3">Escolar</h3>
+        <p class="font-body text-white/95 text-lg max-w-md leading-snug">Murales de aula, libretas, etiquetas, stickers y separadores para actividades.</p>
+      </div>
+      <div class="lg:w-1/2 grid grid-cols-3 gap-3 sm:gap-6 lg:flex lg:justify-end lg:items-center">
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 -rotate-6 lg:-mt-10">
+          <img loading="lazy" decoding="async" alt="Separadores del Día Nacional de la Biblia" class="w-full h-24 object-cover rounded-lg" src="img/ig-10.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Separadores en serie</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 rotate-3 lg:-mt-6">
+          <img loading="lazy" decoding="async" alt="Stickers recortados de anime" class="w-full h-24 object-cover object-left rounded-lg" src="img/ig-05.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Stickers</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 -rotate-2 lg:-mt-12">
+          <img loading="lazy" decoding="async" alt="Separadores con versículos y flores" class="w-full h-24 object-cover rounded-lg" src="img/ig-04.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Separadores</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full bg-morado py-10">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <div class="lg:w-1/2">
+        <span class="text-xs uppercase tracking-widest text-white/80 font-bold block mb-1">Línea 04</span>
+        <h3 class="font-headline font-extrabold text-5xl lg:text-6xl text-white tracking-tight leading-none mb-3">Arte</h3>
+        <p class="font-body text-white/95 text-lg max-w-md leading-snug">Cuadros 3D en capas, personajes, flores modeladas a mano y piezas de fe por encargo.</p>
+      </div>
+      <div class="lg:w-1/2 grid grid-cols-3 gap-3 sm:gap-6 lg:flex lg:justify-end lg:items-center">
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 rotate-3 lg:-mt-10">
+          <img loading="lazy" decoding="async" alt="Cuadro 3D en capas de personaje" class="w-full h-24 object-cover rounded-lg" src="img/ig-03.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Cuadro 3D</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 -rotate-3 lg:-mt-8">
+          <img loading="lazy" decoding="async" alt="Cuadros enmarcados de anime y Hello Kitty" class="w-full h-24 object-cover rounded-lg" src="img/ig-02.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Personajes</p>
+        </div>
+        <div class="sticker-diecut rounded-xl bg-white p-1.5 lg:w-36 rotate-2 lg:-mt-12">
+          <img loading="lazy" decoding="async" alt="Girasoles modelados a mano sobre cuadro" class="w-full h-24 object-cover rounded-lg" src="img/ig-08.webp"/>
+          <p class="font-headline font-bold text-[11px] text-tinta text-center pt-1.5">Flores a mano</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRABAJOS: TENDEDERO (CARRUSEL) -->
+<section class="py-20 lg:py-24 overflow-hidden" id="trabajos">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div>
+      <h2 class="font-headline font-extrabold text-4xl md:text-5xl text-tinta mb-2">Recién salidos del taller</h2>
+      <p class="font-body text-base text-tinta/70">Cada encargo se seca al aire antes de salir a su nuevo hogar.</p>
+    </div>
+    <div class="flex gap-2">
+      <button type="button" data-clothesline-prev class="w-11 h-11 rounded-full border-2 border-tinta/20 hover:border-magenta hover:text-magenta flex items-center justify-center transition-colors" aria-label="Trabajo anterior">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" data-clothesline-next class="w-11 h-11 rounded-full border-2 border-tinta/20 hover:border-magenta hover:text-magenta flex items-center justify-center transition-colors" aria-label="Trabajo siguiente">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="clothesline relative w-full pt-4 pb-10" data-clothesline aria-roledescription="carrusel" aria-label="Trabajos recientes">
+    <ul class="clothesline-track flex w-max" data-clothesline-track>
+      <!-- data-pin: color de la pinza -->
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#E6197F">
+        <figure class="polaroid-swing -rotate-3"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Cuadros del 21 de septiembre con girasoles" class="w-full aspect-square object-cover" src="img/ig-07.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">21 de septiembre</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#14B8B0">
+        <figure class="polaroid-swing rotate-3"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Decoración de Daddy Shower Hassel" class="w-full aspect-square object-cover object-top" src="img/ig-12.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Daddy shower Hassel</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#7B3FB8">
+        <figure class="polaroid-swing -rotate-2"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Cuadro 3D en capas de personaje de anime" class="w-full aspect-square object-cover" src="img/ig-03.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Cuadro 3D en capas</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#F7931E">
+        <figure class="polaroid-swing rotate-2"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Disfraz de otoño con calabaza" class="w-full aspect-square object-cover object-right" src="img/ig-06.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Disfraz de otoño</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#E6197F">
+        <figure class="polaroid-swing -rotate-3"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Llaveros acrílicos con foto" class="w-full aspect-square object-cover" src="img/ig-01.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Llaveros con foto</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#FFC21A">
+        <figure class="polaroid-swing rotate-3"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Ramo de girasol envuelto en La noche estrellada" class="w-full aspect-square object-cover" src="img/ig-09.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Ramo de girasol</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#14B8B0">
+        <figure class="polaroid-swing -rotate-2"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Separadores del Día Nacional de la Biblia" class="w-full aspect-square object-cover" src="img/ig-10.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Día de la Biblia</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#7B3FB8">
+        <figure class="polaroid-swing rotate-2"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Cuadros enmarcados de anime y Hello Kitty" class="w-full aspect-square object-cover" src="img/ig-02.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Cuadros de personajes</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#F7931E">
+        <figure class="polaroid-swing -rotate-3"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Separadores con versículos bíblicos" class="w-full aspect-square object-cover" src="img/ig-04.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Separadores de fe</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#E6197F">
+        <figure class="polaroid-swing rotate-3"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Stickers de anime y llaveros" class="w-full aspect-square object-cover" src="img/ig-05.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Stickers y llaveros</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#14B8B0">
+        <figure class="polaroid-swing -rotate-2"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Corona de hojas de otoño con tutú rosa" class="w-full aspect-square object-cover" src="img/ig-11.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Corona de otoño</figcaption></div>
+        </figure>
+      </li>
+      <li class="clothesline-item w-52 sm:w-60 px-3 sm:px-4 flex justify-center" data-pin="#FFC21A">
+        <figure class="polaroid-swing rotate-2"><div class="pin"></div>
+          <div class="bg-white p-3 pb-2 shadow-xl rounded-sm -mt-3"><img loading="lazy" decoding="async" alt="Cuadro con girasoles modelados a mano" class="w-full aspect-square object-cover" src="img/ig-08.webp"/><figcaption class="font-script text-2xl text-tinta text-center leading-none pt-2">Girasoles en relieve</figcaption></div>
+        </figure>
+      </li>
+    </ul>
+  </div>
+
+  <div class="text-center px-4">
+    <a class="inline-flex items-center gap-2 font-headline font-bold text-base text-tinta hover:text-magenta transition-colors border-b-2 border-tinta/20 hover:border-magenta pb-0.5" href="https://instagram.com/cortizarte" rel="noopener noreferrer" target="_blank">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Más trabajos en Instagram @cortizarte
+    </a>
+  </div>
+</section>
+
+<!-- CÓMO PEDIR -->
+<section class="py-16 lg:py-20 bg-[#E8F8F7] border-y border-turquesa/20" id="como-pedir">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+      <h2 class="font-headline font-extrabold text-4xl md:text-5xl text-tinta mb-3">Cómo pedir tu detalle</h2>
+      <p class="font-body text-base text-tinta/80">Sin procesos complicados. Hablas directamente con la artista.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative max-w-5xl mx-auto items-start">
+      <div class="hidden md:block absolute top-16 left-[20%] right-[20%] border-t-2 border-dashed border-tinta/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10 flex flex-col items-center text-center p-6 bg-white/70 rounded-2xl border-2 border-tinta/10">
+        <div class="w-20 h-20 rounded-full bg-turquesa/20 border-2 border-tinta flex items-center justify-center mb-5">
+          <svg class="w-10 h-10 text-tinta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+        </div>
+        <span class="font-headline font-extrabold text-xl text-turquesa mb-1">01</span>
+        <h3 class="font-headline font-bold text-xl text-tinta mb-2">Me cuentas tu idea</h3>
+        <p class="font-body text-sm text-tinta/80 leading-relaxed">Escríbeme por WhatsApp con fotos de referencia, colores o la ocasión que tienes en mente.</p>
+      </div>
+      <div class="relative z-10 flex flex-col items-center text-center p-6 bg-white/70 rounded-2xl border-2 border-tinta/10">
+        <div class="w-20 h-20 rounded-full bg-amarillo/30 border-2 border-tinta flex items-center justify-center mb-5">
+          <svg class="w-10 h-10 text-tinta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/><path d="M15 5l4 4"/></svg>
+        </div>
+        <span class="font-headline font-extrabold text-xl text-naranja mb-1">02</span>
+        <h3 class="font-headline font-bold text-xl text-tinta mb-2">La diseñamos juntos</h3>
+        <p class="font-body text-sm text-tinta/80 leading-relaxed">Ajustamos colores, nombres, medidas y detalles para que quede como la imaginas.</p>
+      </div>
+      <div class="relative z-10 flex flex-col items-center text-center p-6 bg-white/70 rounded-2xl border-2 border-tinta/10">
+        <div class="w-20 h-20 rounded-full bg-magenta/20 border-2 border-tinta flex items-center justify-center mb-5">
+          <svg class="w-10 h-10 text-tinta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect height="5" width="20" x="2" y="7"/><line x1="12" x2="12" y1="22" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <span class="font-headline font-extrabold text-xl text-magenta mb-1">03</span>
+        <h3 class="font-headline font-bold text-xl text-tinta mb-2">La creo y te la envío</h3>
+        <p class="font-body text-sm text-tinta/80 leading-relaxed">Preparo cada pieza en Bonao, la empaco con cuidado y te la envío. El tiempo depende del trabajo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIDE TU DISEÑO: ORDEN DE TRABAJO -->
+<section class="py-20 lg:py-24 relative overflow-hidden" id="orden">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 relative">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <h2 class="font-headline font-extrabold text-4xl md:text-5xl text-tinta mb-2">Pide tu diseño</h2>
+      <p class="font-body text-base text-tinta/70">Llena la orden y se arma tu mensaje de WhatsApp para Rosa Ángela.</p>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto">
+      <!-- Lápiz -->
+      <div class="hidden lg:block absolute -right-24 top-28 w-12 h-80 rotate-12 z-20 pointer-events-none drop-shadow-xl" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 50 320">
+          <rect fill="#FFC21A" height="230" rx="2" width="20" x="15" y="40"/>
+          <rect fill="#E5AB10" height="230" width="8" x="21" y="40"/>
+          <rect fill="#94A3B8" height="20" width="20" x="15" y="270"/>
+          <line stroke="#475569" stroke-width="2" x1="15" x2="35" y1="277" y2="277"/>
+          <line stroke="#475569" stroke-width="2" x1="15" x2="35" y1="283" y2="283"/>
+          <path d="M15 290 Q25 310 35 290 Z" fill="#F472B6"/>
+          <polygon fill="#FDE68A" points="15,40 35,40 25,5"/>
+          <polygon fill="#141B3D" points="22,18 28,18 25,5"/>
+        </svg>
+      </div>
+
+      <div class="relative bg-[#FFFDF9] rounded-sm shadow-2xl border border-amber-900/10 px-5 py-8 sm:p-12 -rotate-1">
+        <!-- Tachuela -->
+        <svg data-reveal="drop" class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-14 z-30 drop-shadow-md" viewBox="0 0 48 56" aria-hidden="true">
+          <ellipse cx="27" cy="50" rx="7" ry="2.5" fill="#141B3D" opacity=".18"/>
+          <path d="M24 30 L24 48" stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M14 26 Q24 33 34 26 L31 19 Q24 22 17 19 Z" fill="#B3125F"/>
+          <rect x="17" y="10" width="14" height="10" rx="3" fill="#E6197F"/>
+          <ellipse cx="24" cy="9" rx="11" ry="6.5" fill="#E6197F"/>
+          <ellipse cx="20" cy="7" rx="4" ry="2" fill="#fff" opacity=".55"/>
+        </svg>
+
+        <div class="border-b-2 border-tinta/20 pb-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <span class="font-headline font-black text-2xl text-tinta tracking-tight uppercase">Orden de trabajo</span>
+            <p class="font-body text-xs text-tinta/60">Taller Cortizarte · Bonao</p>
+          </div>
+          <div class="bg-amber-100/60 border border-amber-300/80 px-3 py-1 rounded-sm">
+            <span class="font-headline font-bold text-xs text-tinta tracking-widest">FOLIO Nº <span data-folio>CRZ-0001</span></span>
+          </div>
+        </div>
+
+        <form class="space-y-6" data-order-form>
+          <fieldset>
+            <legend class="block font-headline font-bold text-sm text-tinta mb-2.5">1. ¿Qué encargo necesitas?</legend>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+              <label class="flex items-center gap-2 p-2.5 bg-papel border border-tinta/20 rounded cursor-pointer hover:border-magenta transition-colors"><input checked class="accent-magenta w-4 h-4" name="categoria" type="radio" value="Regalo"/><span class="font-headline font-bold text-xs text-tinta">Regalo</span></label>
+              <label class="flex items-center gap-2 p-2.5 bg-papel border border-tinta/20 rounded cursor-pointer hover:border-magenta transition-colors"><input class="accent-magenta w-4 h-4" name="categoria" type="radio" value="Evento"/><span class="font-headline font-bold text-xs text-tinta">Evento</span></label>
+              <label class="flex items-center gap-2 p-2.5 bg-papel border border-tinta/20 rounded cursor-pointer hover:border-magenta transition-colors"><input class="accent-magenta w-4 h-4" name="categoria" type="radio" value="Escolar"/><span class="font-headline font-bold text-xs text-tinta">Escolar</span></label>
+              <label class="flex items-center gap-2 p-2.5 bg-papel border border-tinta/20 rounded cursor-pointer hover:border-magenta transition-colors"><input class="accent-magenta w-4 h-4" name="categoria" type="radio" value="Arte"/><span class="font-headline font-bold text-xs text-tinta">Arte</span></label>
+              <label class="flex items-center gap-2 p-2.5 bg-papel border border-tinta/20 rounded cursor-pointer hover:border-magenta transition-colors"><input class="accent-magenta w-4 h-4" name="categoria" type="radio" value="Otro"/><span class="font-headline font-bold text-xs text-tinta">Otro</span></label>
+            </div>
+          </fieldset>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="order_ocasion" class="block font-headline font-bold text-sm text-tinta mb-1">2. Ocasión o motivo</label>
+              <input class="w-full bg-transparent border-b-2 border-tinta/30 focus:border-magenta outline-none py-1.5 font-body text-base sm:text-sm text-tinta placeholder:text-gray-400" id="order_ocasion" placeholder="Ej. Cumpleaños, baby shower, 21 de septiembre…" type="text"/>
+            </div>
+            <div>
+              <label for="order_fecha" class="block font-headline font-bold text-sm text-tinta mb-1">3. ¿Para qué fecha?</label>
+              <input class="w-full bg-transparent border-b-2 border-tinta/30 focus:border-magenta outline-none py-1.5 font-body text-base sm:text-sm text-tinta" id="order_fecha" type="date"/>
+            </div>
+          </div>
+
+          <div>
+            <label for="order_cantidad" class="block font-headline font-bold text-sm text-tinta mb-1">4. Cantidad <span class="text-xs font-normal text-tinta/60">(sin mínimos, desde 1 pieza)</span></label>
+            <select class="w-full bg-transparent border-b-2 border-tinta/30 focus:border-magenta outline-none py-1.5 font-body text-base sm:text-sm text-tinta" id="order_cantidad">
+              <option value="1 pieza">1 pieza</option>
+              <option value="2 a 5 piezas">2 a 5 piezas</option>
+              <option value="6 a 15 piezas">6 a 15 piezas</option>
+              <option value="Más de 15 piezas">Más de 15 piezas</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="order_detalles" class="block font-headline font-bold text-sm text-tinta mb-1">5. Cuéntame tu idea</label>
+            <textarea class="w-full bg-transparent border-b-2 border-tinta/30 focus:border-magenta outline-none py-1.5 font-body text-base sm:text-sm text-tinta placeholder:text-gray-400 resize-none" id="order_detalles" placeholder="Ej. Un cuadro con girasoles para mi mamá, o llaveros con fotos para un cumpleaños…" rows="3"></textarea>
+          </div>
+
+          <!-- Talón con línea de corte -->
+          <div class="pt-7 mt-8 border-t-2 border-dashed border-tinta/30 relative">
+            <div class="absolute -top-3.5 -left-8 sm:-left-14 w-6 h-6 rounded-full bg-papel" aria-hidden="true"></div>
+            <div class="absolute -top-3.5 -right-8 sm:-right-14 w-6 h-6 rounded-full bg-papel" aria-hidden="true"></div>
+            <!-- Tijeras sobre la línea -->
+            <div data-reveal="slide" class="absolute -top-[22px] left-2 sm:left-6 flex items-center gap-1 pointer-events-none" aria-hidden="true">
+              <svg class="w-14 h-11 -rotate-6 drop-shadow" viewBox="0 0 64 48">
+                <path d="M30 22 L62 13" stroke="#94A3B8" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M30 26 L62 33" stroke="#CBD5E1" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M31 22 L60 14" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+                <circle cx="30" cy="24" r="2.6" fill="#475569"/>
+                <ellipse cx="15" cy="13" rx="11" ry="8" fill="none" stroke="#E6197F" stroke-width="5"/>
+                <ellipse cx="15" cy="35" rx="11" ry="8" fill="none" stroke="#E6197F" stroke-width="5"/>
+                <path d="M24 17 L30 22 M24 31 L30 26" stroke="#E6197F" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+              <span class="font-script text-lg text-tinta/60 -mt-3">corta aquí</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="text-center sm:text-left">
+                <p class="font-headline font-bold text-xs text-tinta">Precios accesibles · cotización por WhatsApp</p>
+                <p class="font-body text-xs text-tinta/60">Te respondo con la cotización por WhatsApp, sin compromiso.</p>
+              </div>
+              <button type="submit" class="w-full sm:w-auto bg-[#25D366] hover:bg-[#20bd5a] text-white font-headline font-bold text-base px-8 py-3.5 rounded-full shadow-md transition-colors flex items-center justify-center gap-2 shrink-0">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                Enviar por WhatsApp
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETRÁS DEL PINCEL -->
+<section class="py-16 lg:py-20 bg-morado text-white relative overflow-hidden">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative max-w-sm w-full">
+          <!-- Tachuela -->
+          <svg data-reveal="drop" class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-14 z-30 drop-shadow-md" viewBox="0 0 48 56" aria-hidden="true">
+            <ellipse cx="27" cy="50" rx="7" ry="2.5" fill="#141B3D" opacity=".25"/>
+            <path d="M24 30 L24 48" stroke="#9CA3AF" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M14 26 Q24 33 34 26 L31 19 Q24 22 17 19 Z" fill="#D9A300"/>
+            <rect x="17" y="10" width="14" height="10" rx="3" fill="#FFC21A"/>
+            <ellipse cx="24" cy="9" rx="11" ry="6.5" fill="#FFC21A"/>
+            <ellipse cx="20" cy="7" rx="4" ry="2" fill="#fff" opacity=".6"/>
+          </svg>
+          <div class="bg-white p-3 pb-12 shadow-2xl rotate-2">
+            <img loading="lazy" decoding="async" alt="Cuadro de girasoles hecho por Rosa Ángela" class="w-full h-80 sm:h-[400px] object-cover" src="img/ig-08.webp"/>
+            <p class="absolute bottom-3 inset-x-0 text-center font-script text-2xl text-tinta">Hecho en el taller de Bonao</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <span class="text-xs uppercase tracking-widest text-white/70 font-bold block mb-2">Detrás del pincel</span>
+        <h2 class="font-headline font-extrabold text-4xl md:text-5xl lg:text-6xl text-white mb-6 tracking-tight leading-tight">Hola, soy Rosa Ángela.</h2>
+        <div class="space-y-4 font-body text-white/95 text-lg leading-relaxed max-w-xl">
+          <p>Pinto, ilustro y diseño cada pieza en Bonao. Cortizarte nació para convertir tus ideas en detalles que se guardan.</p>
+          <p class="text-base text-white/80">Creatividad que se transforma en detalles únicos. Cada pieza lleva tiempo, dedicación y el cuidado que merece un recuerdo especial.</p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-white/20">
+          <span class="font-script text-4xl text-white block">Rosa Ángela Cuello Ortiz</span>
+          <span class="font-headline font-bold text-xs uppercase tracking-wider text-white/70 block mt-1">Fundadora y artista de Cortizarte</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-tinta text-white">
+  <div class="h-2.5 w-full brush-stroke-multi"></div>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-8 pt-14 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-white/10 items-start">
+      <div class="md:col-span-2">
+        <div class="inline-block bg-white rounded-2xl p-4 pr-5 -rotate-2 shadow-[0_10px_30px_rgba(0,0,0,.35)] mb-6">
+          <img src="Imagotipo-Footer.svg" alt="CortizArte · Papelería, librería, creatividad" class="h-20 sm:h-24 w-auto"/>
+        </div>
+        <p class="font-body text-sm text-white/70 max-w-sm mb-3">Creatividad que se transforma en detalles únicos. Taller de Rosa Ángela Cuello Ortiz.</p>
+        <p class="font-headline font-bold text-xs text-turquesa">Bonao, República Dominicana · Hacemos envíos</p>
+      </div>
+      <div>
+        <span class="font-headline font-bold text-sm uppercase tracking-wider text-white/50 block mb-3">Contacto</span>
+        <ul class="space-y-2.5 font-body text-sm">
+          <li>
+            <a class="inline-flex items-center gap-2.5 text-white hover:text-turquesa transition-colors" href="https://wa.me/18294999794" rel="noopener noreferrer" target="_blank">
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 48 48" aria-hidden="true"><path fill="#67c15e" fill-rule="evenodd" d="M23.993033 0C10.762252 0 0 10.765287 0 23.999801c0 5.24865 1.692661 10.116224 4.570026 14.067146l-2.990421 8.916851 9.224844-2.948259C14.598605 46.546975 19.126434 48 24.006967 48 37.237748 48 48 37.234315 48 24.000199 48 10.765685 37.237748.000398 24.006967.000398h-.013934zM17.29285 12.190836c-.465362-1.114556-.818066-1.156765-1.523076-1.185435-.240046-.013937-.50756-.027874-.804134-.027874-.91719 0-1.876178.267987-2.454597.860506-.70501.719544-2.4542 2.398347-2.4542 5.841169 0 3.442821 2.510728 6.772554 2.849101 7.238446.352704.465095 4.894864 7.632662 11.947353 10.553844 5.515082 2.285657 7.151613 2.073815 8.406777 1.805828 1.833584-.395012 4.132928-1.750081 4.711347-3.386277.578419-1.636993.578419-3.033872.408834-3.330131-.169187-.29626-.634947-.465096-1.339957-.818297-.70501-.352804-4.132928-2.045942-4.781808-2.271721-.634947-.239715-1.241231-.154899-1.720527.522436-.677144.945323-1.339957 1.90498-1.876178 2.483164-.423166.451557-1.114641.508101-1.692662.267987-.775869-.324133-2.947825-1.086683-5.628138-3.471093-2.073629-1.848038-3.484047-4.147632-3.892881-4.838904-.409233-.705209-.042197-1.114955.281844-1.495632.352705-.43762.691078-.747816 1.043782-1.157164.352704-.40895.550154-.620791.775869-1.10062.240046-.465493.070461-.945322-.098725-1.298126-.169187-.352803-1.579605-3.795625-2.158024-5.192106"/></svg>
+              +1 (829) 499-9794
+            </a>
+          </li>
+          <li>
+            <a class="inline-flex items-center gap-2.5 text-white hover:text-turquesa transition-colors" href="https://instagram.com/cortizarte" rel="noopener noreferrer" target="_blank">
+              <svg class="w-5 h-5 shrink-0" viewBox="0 0 100 100" aria-hidden="true"><g fill="#dd2a7b"><path d="M75.352 18.949c-7.6.233-7.598 11.167 0 11.398 7.6-.233 7.598-11.167 0-11.398M50 25.547c-13.47 0-24.389 10.948-24.389 24.453 1.285 32.437 47.497 32.428 48.777 0C74.389 36.495 63.469 25.547 50 25.547m0 40.326c-8.743 0-15.831-7.107-15.831-15.873.834-21.055 30.832-21.05 31.663 0-.001 8.767-7.089 15.873-15.832 15.873"/><path d="M97.208 30.418C96.856 13.751 86.252 3.141 69.581 2.792c-4.003-.386-35.157-.393-39.163 0-16.667.352-27.277 10.956-27.626 27.627-.386 3.997-.394 35.161 0 39.163.311 16.613 11.011 27.316 27.626 27.626 4.003.39 35.157.39 39.163 0 5.055-.231 8.508-1.034 11.529-2.208 10.587-4.229 15.76-13.636 16.098-25.419.386-4.003.393-35.157 0-39.163M69.191 88.659c-3.939.376-34.441.382-38.383 0-4.63-.211-7.145-.985-8.819-1.635-14.449-6.702-9.969-20.255-10.65-38.858.015-4.321-.009-13.036.001-17.357.577-12.882 6.644-18.846 19.468-19.468 3.944-.376 34.438-.382 38.383 0 12.886.577 18.844 6.644 19.468 19.467.255 3.079.44 19.887 0 28.393.475 15.976-.253 28.521-19.468 29.458"/></g></svg>
+              @cortizarte
+            </a>
+          </li>
+          <li class="text-white/60 text-xs pt-1">Precios accesibles · cotiza por WhatsApp</li>
+        </ul>
+      </div>
+      <div>
+        <span class="font-headline font-bold text-sm uppercase tracking-wider text-white/50 block mb-3">Taller</span>
+        <ul class="space-y-2 font-body text-sm text-white/70">
+          <li>Sin pedidos mínimos, desde 1 pieza</li>
+          <li>Tiempo de entrega según el trabajo</li>
+          <li>Hacemos envíos</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/50">
+      <p>© 2026 Cortizarte</p>
+      <p>Detalles personalizados por Rosa Ángela Cuello Ortiz</p>
+    </div>
+  </div>
+</footer>
+
+<a aria-label="Hablar por WhatsApp" class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full bg-white ring-1 ring-tinta/10 flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-transform" href="https://wa.me/18294999794?text=Hola%20Rosa%20%C3%81ngela!%20Quiero%20hacerte%20una%20consulta%20sobre%20un%20dise%C3%B1o" rel="noopener noreferrer" target="_blank">
+  <svg class="w-8 h-8" viewBox="0 0 48 48" aria-hidden="true"><path fill="#67c15e" fill-rule="evenodd" d="M23.993033 0C10.762252 0 0 10.765287 0 23.999801c0 5.24865 1.692661 10.116224 4.570026 14.067146l-2.990421 8.916851 9.224844-2.948259C14.598605 46.546975 19.126434 48 24.006967 48 37.237748 48 48 37.234315 48 24.000199 48 10.765685 37.237748.000398 24.006967.000398h-.013934zM17.29285 12.190836c-.465362-1.114556-.818066-1.156765-1.523076-1.185435-.240046-.013937-.50756-.027874-.804134-.027874-.91719 0-1.876178.267987-2.454597.860506-.70501.719544-2.4542 2.398347-2.4542 5.841169 0 3.442821 2.510728 6.772554 2.849101 7.238446.352704.465095 4.894864 7.632662 11.947353 10.553844 5.515082 2.285657 7.151613 2.073815 8.406777 1.805828 1.833584-.395012 4.132928-1.750081 4.711347-3.386277.578419-1.636993.578419-3.033872.408834-3.330131-.169187-.29626-.634947-.465096-1.339957-.818297-.70501-.352804-4.132928-2.045942-4.781808-2.271721-.634947-.239715-1.241231-.154899-1.720527.522436-.677144.945323-1.339957 1.90498-1.876178 2.483164-.423166.451557-1.114641.508101-1.692662.267987-.775869-.324133-2.947825-1.086683-5.628138-3.471093-2.073629-1.848038-3.484047-4.147632-3.892881-4.838904-.409233-.705209-.042197-1.114955.281844-1.495632.352705-.43762.691078-.747816 1.043782-1.157164.352704-.40895.550154-.620791.775869-1.10062.240046-.465493.070461-.945322-.098725-1.298126-.169187-.352803-1.579605-3.795625-2.158024-5.192106"/></svg>
+</a>
+
+<script>
+  // Pinzas de madera dibujadas con el color de cada foto
+  document.querySelectorAll('.clothesline-item').forEach(function (item) {
+    var color = item.dataset.pin || '#E6197F';
+    item.querySelector('.pin').outerHTML =
+      '<svg class="relative z-10 mx-auto w-5 h-10 drop-shadow" viewBox="0 0 20 40" aria-hidden="true">' +
+      '<rect x="2" y="0" width="7" height="36" rx="2" fill="' + color + '"/>' +
+      '<rect x="11" y="0" width="7" height="36" rx="2" fill="' + color + '" opacity=".85"/>' +
+      '<rect x="1" y="15" width="18" height="5" rx="1.5" fill="#94A3B8"/>' +
+      '<rect x="3" y="2" width="2" height="30" rx="1" fill="#fff" opacity=".35"/></svg>';
+  });
+
+  // Carrusel del tendedero: avanza solo, se arrastra con mouse o dedo, sin fin
+  (function () {
+    var root = document.querySelector('[data-clothesline]');
+    var track = root.querySelector('[data-clothesline-track]');
+    var originals = Array.prototype.slice.call(track.children);
+    originals.forEach(function (li) {
+      var clone = li.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
+      track.appendChild(clone);
+    });
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var SPEED = 40;
+    var x = 0, setWidth = 0, last = 0;
+    var dragging = false, moved = false, startX = 0, startOffset = 0;
+    var hovering = false, resumeAt = 0, tween = null;
+
+    function measure() { setWidth = track.scrollWidth / 2; }
+    function wrap(v) { if (!setWidth) return v; v = v % setWidth; return v > 0 ? v - setWidth : v; }
+    function render() { track.style.transform = 'translate3d(' + x + 'px,0,0)'; }
+
+    function frame(t) {
+      var dt = last ? Math.min((t - last) / 1000, 0.05) : 0;
+      last = t;
+      if (tween) {
+        var p = Math.min((t - tween.start) / 450, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        x = wrap(tween.from + (tween.to - tween.from) * e);
+        if (p === 1) tween = null;
+      } else if (!dragging && !hovering && !reduced && !window.__czLightboxOpen && t > resumeAt) {
+        x = wrap(x - SPEED * dt);
+      }
+      render();
+      requestAnimationFrame(frame);
+    }
+
+    root.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true; moved = false; tween = null;
+      startX = e.clientX; startOffset = x;
+    });
+    root.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 4) {
+        moved = true;
+        root.classList.add('is-dragging');
+        // Capturar solo al arrastrar: un toque simple sigue llegando a la foto y la abre
+        try { root.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      x = wrap(startOffset + dx);
+      render();
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      root.classList.remove('is-dragging');
+      resumeAt = performance.now() + 1500;
+    }
+    root.addEventListener('pointerup', endDrag);
+    root.addEventListener('pointercancel', endDrag);
+    root.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+
+    if (window.matchMedia('(hover: hover)').matches) {
+      root.addEventListener('mouseenter', function () { hovering = true; });
+      root.addEventListener('mouseleave', function () { hovering = false; });
+    }
+
+    function step(dir) {
+      var w = originals[0].getBoundingClientRect().width;
+      tween = { from: x, to: x - dir * w, start: performance.now() };
+      resumeAt = performance.now() + 2500;
+    }
+    document.querySelector('[data-clothesline-prev]').addEventListener('click', function () { step(-1); });
+    document.querySelector('[data-clothesline-next]').addEventListener('click', function () { step(1); });
+
+    window.addEventListener('resize', function () { measure(); x = wrap(x); });
+    window.addEventListener('load', measure);
+    measure();
+    requestAnimationFrame(frame);
+  })();
+
+  // Orden de trabajo → mensaje de WhatsApp
+  (function () {
+    var form = document.querySelector('[data-order-form]');
+    var folio = 'CRZ-' + String(Date.now()).slice(-4);
+    document.querySelector('[data-folio]').textContent = folio;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var categoria = (form.querySelector('input[name="categoria"]:checked') || {}).value || 'Otro';
+      var ocasion = document.getElementById('order_ocasion').value.trim();
+      var fechaRaw = document.getElementById('order_fecha').value;
+      var cantidad = document.getElementById('order_cantidad').value;
+      var idea = document.getElementById('order_detalles').value.trim();
+      var fecha = '';
+      if (fechaRaw) { var p = fechaRaw.split('-'); fecha = p[2] + '/' + p[1] + '/' + p[0]; }
+
+      var lines = ['Hola Rosa Ángela! Quiero cotizar un diseño en Cortizarte.', '', 'Orden ' + folio, '• Encargo: ' + categoria];
+      if (ocasion) lines.push('• Ocasión: ' + ocasion);
+      if (fecha) lines.push('• Para: ' + fecha);
+      lines.push('• Cantidad: ' + cantidad);
+      if (idea) lines.push('• Idea: ' + idea);
+
+      window.open('https://wa.me/18294999794?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
+    });
+  })();
+
+  var czReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // La gran C se pinta al entrar al hero (y se vuelve a pintar al regresar)
+  (function () {
+    var svg = document.querySelector('.hero-c');
+    var path = svg.querySelector('.hero-c-path');
+    var len = Math.ceil(path.getTotalLength()) + 80;
+    path.style.transition = 'none';
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = czReduced ? 0 : len;
+    path.getBoundingClientRect();
+    if (czReduced) { svg.classList.add('is-drawn'); return; }
+
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          path.getBoundingClientRect();
+          path.style.transition = '';
+          path.style.strokeDashoffset = 0;
+          svg.classList.add('is-drawn');
+        } else {
+          path.style.transition = 'none';
+          path.style.strokeDashoffset = len;
+          svg.classList.remove('is-drawn');
+        }
+      });
+    }, { threshold: 0 }).observe(svg);
+  })();
+
+  // Entradas por scroll: aparecen al entrar, se ocultan al salir del todo y repiten al volver
+  (function () {
+    function mark(selector, type, stagger, base) {
+      document.querySelectorAll(selector).forEach(function (el, i) {
+        if (el.hasAttribute('data-reveal') && el.getAttribute('data-reveal') !== type) return;
+        el.setAttribute('data-reveal', type);
+        el.style.setProperty('--d', ((base || 0) + (stagger ? i * stagger : 0)) + 'ms');
+      });
+    }
+
+    // Hero
+    mark('section:first-of-type h1', 'up', 0, 150);
+    mark('section:first-of-type h1 + p', 'up', 0, 300);
+    mark('section:first-of-type h1 ~ a', 'up', 0, 420);
+    mark('section:first-of-type figure', 'pop', 90, 500);
+    // Títulos y bajadas
+    mark('main h2, body > section h2', 'up');
+    mark('#trabajos h2 + p, #como-pedir h2 + p, #orden h2 + p', 'up', 0, 120);
+    // Cajones del taller: texto desde la izquierda, stickers saltando uno a uno
+    document.querySelectorAll('.bg-magenta.py-10, .bg-naranja.py-10, .bg-turquesa.py-10, .bg-morado.py-10').forEach(function (band) {
+      var cols = band.firstElementChild.children;
+      cols[0].setAttribute('data-reveal', 'left');
+      Array.prototype.forEach.call(cols[1].children, function (s, i) {
+        s.setAttribute('data-reveal', 'pop');
+        s.style.setProperty('--d', (150 + i * 110) + 'ms');
+      });
+    });
+    // Tendedero, pasos, orden, artista, footer
+    mark('[data-clothesline]', 'up', 0, 100);
+    mark('[data-clothesline-prev], [data-clothesline-next]', 'pop', 80, 200);
+    mark('#como-pedir .grid > div.relative', 'up', 140);
+    mark('#orden .shadow-2xl', 'up');
+    mark('#orden svg[data-reveal="drop"]', 'drop', 0, 450);
+    mark('#orden [data-reveal="slide"]', 'slide', 0, 650);
+    mark('.bg-morado.text-white .lg\\:col-span-5', 'left');
+    mark('.bg-morado.text-white svg[data-reveal="drop"]', 'drop', 0, 500);
+    mark('.bg-morado.text-white .lg\\:col-span-7', 'right', 0, 120);
+    mark('footer .rotate-\\[-2deg\\], footer .-rotate-2', 'pop');
+
+    var items = document.querySelectorAll('[data-reveal]');
+    if (czReduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && en.intersectionRatio >= 0.12) en.target.classList.add('is-in');
+        else if (!en.isIntersecting) en.target.classList.remove('is-in');
+      });
+    }, { threshold: [0, 0.12], rootMargin: '0px 0px -6% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Vista ampliada: la foto crece desde donde está y regresa al cerrar
+  (function () {
+    var triggers = [];
+    document.querySelectorAll('.sticker-diecut, .clothesline-item figure, .bg-morado.text-white .rotate-2').forEach(function (el) {
+      var img = el.querySelector('img');
+      if (!img) return;
+      var cap = el.querySelector('figcaption, p');
+      el.setAttribute('data-zoom', '');
+      var hidden = el.closest('[aria-hidden="true"]');
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', hidden ? '-1' : '0');
+      el.setAttribute('aria-label', 'Ver en grande: ' + ((cap && cap.textContent.trim()) || img.alt));
+      if (el.closest('.bg-morado.text-white')) el.setAttribute('data-no-ask', '');
+      triggers.push(el);
+    });
+
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Foto ampliada');
+    box.innerHTML =
+      '<div class="lightbox-backdrop"></div>' +
+      '<div class="lightbox-frame"><img alt=""/></div>' +
+      '<div class="lightbox-caption">' +
+      '<p class="font-script text-3xl leading-none" data-lb-text></p>' +
+      '<a class="lightbox-ask" target="_blank" rel="noopener noreferrer" data-lb-ask>' +
+      '<svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#67c15e" fill-rule="evenodd" d="M23.993033 0C10.762252 0 0 10.765287 0 23.999801c0 5.24865 1.692661 10.116224 4.570026 14.067146l-2.990421 8.916851 9.224844-2.948259C14.598605 46.546975 19.126434 48 24.006967 48 37.237748 48 48 37.234315 48 24.000199 48 10.765685 37.237748.000398 24.006967.000398h-.013934zM17.29285 12.190836c-.465362-1.114556-.818066-1.156765-1.523076-1.185435-.240046-.013937-.50756-.027874-.804134-.027874-.91719 0-1.876178.267987-2.454597.860506-.70501.719544-2.4542 2.398347-2.4542 5.841169 0 3.442821 2.510728 6.772554 2.849101 7.238446.352704.465095 4.894864 7.632662 11.947353 10.553844 5.515082 2.285657 7.151613 2.073815 8.406777 1.805828 1.833584-.395012 4.132928-1.750081 4.711347-3.386277.578419-1.636993.578419-3.033872.408834-3.330131-.169187-.29626-.634947-.465096-1.339957-.818297-.70501-.352804-4.132928-2.045942-4.781808-2.271721-.634947-.239715-1.241231-.154899-1.720527.522436-.677144.945323-1.339957 1.90498-1.876178 2.483164-.423166.451557-1.114641.508101-1.692662.267987-.775869-.324133-2.947825-1.086683-5.628138-3.471093-2.073629-1.848038-3.484047-4.147632-3.892881-4.838904-.409233-.705209-.042197-1.114955.281844-1.495632.352705-.43762.691078-.747816 1.043782-1.157164.352704-.40895.550154-.620791.775869-1.10062.240046-.465493.070461-.945322-.098725-1.298126-.169187-.352803-1.579605-3.795625-2.158024-5.192106"/></svg>' +
+      'Quiero algo así</a>' +
+      '</div>' +
+      '<button type="button" class="lightbox-close" aria-label="Cerrar">' +
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    document.body.appendChild(box);
+
+    var frameEl = box.querySelector('.lightbox-frame');
+    var bigImg = frameEl.querySelector('img');
+    var caption = box.querySelector('.lightbox-caption');
+    var captionText = box.querySelector('[data-lb-text]');
+    var ask = box.querySelector('[data-lb-ask]');
+    var closeBtn = box.querySelector('.lightbox-close');
+    var current = null, sourceImg = null, busy = false;
+
+    function setRect(r, radius) {
+      frameEl.style.top = r.top + 'px';
+      frameEl.style.left = r.left + 'px';
+      frameEl.style.width = r.width + 'px';
+      frameEl.style.height = r.height + 'px';
+      frameEl.style.borderRadius = radius;
+    }
+    function targetRect(img) {
+      var ratio = (img.naturalWidth || 4) / (img.naturalHeight || 5);
+      var maxW = Math.min(window.innerWidth - 32, 900);
+      var below = ask.hidden ? 70 : 130;
+      var maxH = window.innerHeight - 80 - below;
+      var w = maxW, h = w / ratio;
+      if (h > maxH) { h = maxH; w = h * ratio; }
+      var top = Math.max(76, (window.innerHeight - h - below) / 2 + 10);
+      return { top: top, left: (window.innerWidth - w) / 2, width: w, height: h };
+    }
+    function waitTransition(cb) {
+      if (czReduced) { cb(); return; }
+      var done = false;
+      function fin() { if (done) return; done = true; frameEl.removeEventListener('transitionend', onEnd); cb(); }
+      function onEnd(e) { if (e.target === frameEl && e.propertyName === 'width') fin(); }
+      frameEl.addEventListener('transitionend', onEnd);
+      setTimeout(fin, 650);
+    }
+
+    function open(trigger) {
+      if (busy || current) return;
+      busy = true;
+      current = trigger;
+      window.__czLightboxOpen = true;
+      sourceImg = trigger.querySelector('img');
+      var from = sourceImg.getBoundingClientRect();
+      var radius = getComputedStyle(sourceImg).borderRadius || '0px';
+      var text = trigger.getAttribute('aria-label').replace('Ver en grande: ', '');
+
+      bigImg.src = sourceImg.currentSrc || sourceImg.src;
+      bigImg.alt = sourceImg.alt || text;
+      captionText.textContent = text;
+      ask.hidden = trigger.hasAttribute('data-no-ask');
+      ask.href = 'https://wa.me/18294999794?text=' + encodeURIComponent(
+        'Hola Rosa Ángela! Vi «' + text + '» en tu página y quiero algo parecido. ¿Me das una cotización?');
+
+      frameEl.style.transition = 'none';
+      setRect(from, radius);
+      box.classList.add('is-open');
+      sourceImg.style.visibility = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      frameEl.getBoundingClientRect();
+
+      frameEl.style.transition = '';
+      var to = targetRect(sourceImg);
+      box.classList.add('is-visible');
+      setRect(to, '14px');
+      caption.style.top = (to.top + to.height + 14) + 'px';
+      waitTransition(function () {
+        box.classList.add('is-settled');
+        closeBtn.focus({ preventScroll: true });
+        busy = false;
+      });
+    }
+
+    function close() {
+      if (busy || !current) return;
+      busy = true;
+      box.classList.remove('is-settled', 'is-visible');
+      var to = sourceImg.getBoundingClientRect();
+      setRect(to, getComputedStyle(sourceImg).borderRadius || '0px');
+      waitTransition(function () {
+        sourceImg.style.visibility = '';
+        box.classList.remove('is-open');
+        document.documentElement.style.overflow = '';
+        window.__czLightboxOpen = false;
+        var t = current;
+        current = null; sourceImg = null; busy = false;
+        if (t.getAttribute('tabindex') === '0') t.focus({ preventScroll: true });
+      });
+    }
+
+    triggers.forEach(function (el) {
+      el.addEventListener('click', function () { open(el); });
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el); }
+      });
+    });
+    closeBtn.addEventListener('click', close);
+    box.querySelector('.lightbox-backdrop').addEventListener('click', close);
+    frameEl.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (!current) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        var stops = ask.hidden ? [closeBtn] : [closeBtn, ask];
+        var i = stops.indexOf(document.activeElement);
+        stops[(i + (e.shiftKey ? stops.length - 1 : 1)) % stops.length].focus();
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (current && !busy) {
+        var to = targetRect(sourceImg);
+        frameEl.style.transition = 'none';
+        setRect(to, '14px');
+        caption.style.top = (to.top + to.height + 14) + 'px';
+      }
+    });
+  })();
+</script>
+</body>
+</html>
