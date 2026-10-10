@@ -72,10 +72,11 @@ npx tailwindcss@3 -i tailwind.css -o styles.css --minify
 
 ## Publicación
 
-- **Producción:** https://cortizarte.edu.do (dominio en NIC.DO con DNS en Cloudflare)
-- **Respaldo:** https://cortizarte.pages.dev
+- **Producción:** https://cortizarte.edu.do
 
-Está en Cloudflare Pages conectado a este repo: cada `git push` a `main` publica la nueva versión sola, sin paso de build porque `styles.css` ya va compilado.
+Está en GitHub Pages, publicado desde la raíz de `main`: cada `git push` publica la nueva versión sola, sin paso de build porque `styles.css` ya va compilado. El archivo `CNAME` le indica a GitHub el dominio.
+
+DNS en midominio.do (NIC.DO): cuatro registros **A** en la raíz hacia `185.199.108.153`, `185.199.109.153`, `185.199.110.153` y `185.199.111.153`, y un **CNAME** `www` → `elian-d.github.io`.
 
 La vista previa al compartir el link usa direcciones completas (`og:url` y `og:image` en el `<head>`). Si el dominio cambia, hay que actualizarlas ahí y en `<link rel="canonical">`.
 
