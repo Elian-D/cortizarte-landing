@@ -70,13 +70,14 @@ Después de cambiar clases de Tailwind en `index.html`:
 npx tailwindcss@3 -i tailwind.css -o styles.css --minify
 ```
 
-## Antes de publicar con dominio
+## Publicación
 
-WhatsApp y Facebook solo leen la imagen de vista previa con una dirección completa. Al tener dominio, cambia en el `<head>` de `index.html`:
+- **Producción:** https://cortizarte.edu.do (dominio en NIC.DO con DNS en Cloudflare)
+- **Respaldo:** https://cortizarte.pages.dev
 
-```html
-<meta property="og:image" content="https://tudominio.com/og-image.jpg"/>
-```
+Está en Cloudflare Pages conectado a este repo: cada `git push` a `main` publica la nueva versión sola, sin paso de build porque `styles.css` ya va compilado.
+
+La vista previa al compartir el link usa direcciones completas (`og:url` y `og:image` en el `<head>`). Si el dominio cambia, hay que actualizarlas ahí y en `<link rel="canonical">`.
 
 ## Contacto
 
